@@ -1,0 +1,21 @@
+services:
+  cache:
+    image: generic_cache:latest
+    container_name: cache
+    hostname: cache
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    command:
+      ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - "./app.py:/app/app.py"
+      - "./interfaces:/app/interfaces"
+      - "./cache_item:/app/cache_item"
+      - "./cache_settings.py:/app/cache_settings.py"
+
+  redis:
+      image: redis:latest
+      container_name: redis
+      hostname: redis
+      restart: unless-stopped
