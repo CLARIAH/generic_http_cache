@@ -1,6 +1,7 @@
 services:
   cache:
     image: generic_cache:latest
+#    image: ghcr.io/clariah/generic_http_cache:latest # The repo is not public for image pulling
     container_name: cache
     hostname: cache
     restart: unless-stopped
